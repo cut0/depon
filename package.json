@@ -17,7 +17,7 @@
     "./*": "./*"
   },
   "bin": {
-    "depon": "./dist/cli/index.mjs"
+    "depon": "./dist/cli/index.js"
   },
   "scripts": {
     "lint:check": "biome ci",

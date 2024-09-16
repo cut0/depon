@@ -33,7 +33,7 @@ Promise.all([
   }),
   build({
     ...cliOptions,
-    format: "esm",
-    outfile: "./dist/cli/index.mjs",
+    format: "cjs",
+    outfile: "./dist/cli/index.js",
   }),
 ]).catch(() => process.exit(1));
