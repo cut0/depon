@@ -18,6 +18,9 @@ const cliOptions: BuildOptions = {
   sourcemap: false,
   platform: "node",
   target: "esnext",
+  banner: {
+    js: "#!/usr/bin/env node",
+  },
 } as const;
 
 Promise.all([
