@@ -2,6 +2,10 @@
   "name": "depon",
   "version": "0.0.1",
   "description": "This library explores and visualizes project dependencies, offering both CLI-based text output and an interactive visualizer for intuitive understanding of file relationships.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cut0/depon.git"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -12,7 +16,6 @@
     },
     "./*": "./*"
   },
-
   "scripts": {
     "lint:check": "biome ci",
     "lint:fix": "biome check --fix",
@@ -21,12 +24,21 @@
     "build": "pnpm -C workspaces/core run build",
     "release": "pnpm build && changeset publish"
   },
-  "keywords": ["Depen"],
+  "keywords": [
+    "Depon",
+    "Dependency",
+    "Visualizer",
+    "Graph",
+    "CLI",
+    "Library",
+    "Tool",
+    "File"
+  ],
   "author": "Cut0",
   "license": "MIT",
   "files": ["dist"],
   "devDependencies": {
-    "@biomejs/biome": "1.9.0",
+    "@biomejs/biome": "1.9.1",
     "@changesets/changelog-github": "0.5.0",
     "@changesets/cli": "2.27.8",
     "@commitlint/cli": "19.5.0",

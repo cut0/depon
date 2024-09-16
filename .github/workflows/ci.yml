@@ -50,28 +50,28 @@ jobs:
       - name: Test
         run: pnpm test
 
-  # release:
-  #   runs-on: ubuntu-latest
-  #   if: github.ref == 'refs/heads/main'
-  #   needs:
-  #     - run_lint
-  #     - run_typecheck
-  #     - run_test
+  release:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs:
+      - run_lint
+      - run_typecheck
+      - run_test
 
-  #   steps:
-  #     - name: Checkout Repo
-  #       uses: actions/checkout@v4
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
 
-  #     - uses: ./.github/actions/setup
+      - uses: ./.github/actions/setup
 
-  #     - name: Install Deps
-  #       run: pnpm install --frozen-lockfile
+      - name: Install Deps
+        run: pnpm install --frozen-lockfile
 
-  #     - name: Create Release Pull Request or Publish to npm
-  #       id: changesets
-  #       uses: changesets/action@v1
-  #       with:
-  #         publish: pnpm release
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: pnpm release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
