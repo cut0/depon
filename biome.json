@@ -31,6 +31,6 @@
     }
   },
   "files": {
-    "ignore": ["dist/**/*"]
+    "ignore": ["dist/**/*", "package.json"]
   }
 }
