@@ -26,7 +26,16 @@
     "build": "pnpm -C workspaces/core run build",
     "release": "pnpm build && changeset publish"
   },
-  "keywords": ["Depen"],
+  "keywords": [
+    "Depon",
+    "Dependency",
+    "Visualizer",
+    "Graph",
+    "CLI",
+    "Library",
+    "Tool",
+    "File"
+  ],
   "author": "Cut0",
   "license": "MIT",
   "files": ["dist"],
