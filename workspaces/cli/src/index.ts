@@ -4,7 +4,7 @@ import { createCommand } from "./commands";
 const run = async () => {
   const program = new Command()
     .version("0.0.1")
-    .description("depon CLI tool");
+    .description("DePON!! CLI tool");
 
   createCommand(program);
 

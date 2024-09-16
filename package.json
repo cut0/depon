@@ -2,6 +2,11 @@
   "name": "depon",
   "version": "0.0.1",
   "description": "This library explores and visualizes project dependencies, offering both CLI-based text output and an interactive visualizer for intuitive understanding of file relationships.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cut0/depon.git"
+  },
+
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
