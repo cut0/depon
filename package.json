@@ -6,15 +6,18 @@
     "type": "git",
     "url": "https://github.com/cut0/depon.git"
   },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/core/index.js",
+  "types": "./dist/core/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "types": "./dist/core/index.d.ts",
+      "import": "./dist/core/index.mjs",
+      "require": "./dist/core/index.js"
     },
     "./*": "./*"
+  },
+  "bin": {
+    "depon": "./dist/cli/index.mjs"
   },
   "scripts": {
     "lint:check": "biome ci",
