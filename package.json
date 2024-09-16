@@ -1,6 +1,6 @@
 {
   "name": "depon",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "This library explores and visualizes project dependencies, offering both CLI-based text output and an interactive visualizer for intuitive understanding of file relationships.",
   "repository": {
     "type": "git",
