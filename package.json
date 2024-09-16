@@ -21,7 +21,7 @@
     "lint:fix": "biome check --fix",
     "typecheck": "tsc --noEmit",
     "test": "vitest",
-    "build": "pnpm -C workspaces/core run build",
+    "build": "tsc -p ./tsconfig.build.json && tsx ./build.ts",
     "release": "pnpm build && changeset publish"
   },
   "keywords": [
@@ -36,7 +36,9 @@
   ],
   "author": "Cut0",
   "license": "MIT",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "@biomejs/biome": "1.9.1",
     "@changesets/changelog-github": "0.5.0",
@@ -48,5 +50,10 @@
     "typescript": "5.6.2",
     "vitest": "2.1.1"
   },
-  "packageManager": "pnpm@9.10.0"
+  "packageManager": "pnpm@9.10.0",
+  "dependencies": {
+    "commander": "12.1.0",
+    "minimatch": "10.0.1",
+    "ts-morph": "23.0.0"
+  }
 }

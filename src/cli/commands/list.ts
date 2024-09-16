@@ -1,11 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
-import {
-  genFileRelation,
-  getChildrenList,
-  getParentsList,
-} from "@depon/core/src";
 import type { Command } from "commander";
+import { genFileRelation, getChildrenList, getParentsList } from "../../core";
 import { printList } from "../utils/printer";
 import { toRecord, toSeparatedArray } from "../utils/string";
 
