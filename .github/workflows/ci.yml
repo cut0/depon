@@ -1,0 +1,77 @@
+name: CI
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "**"
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - name: Install Deps
+        run: pnpm install --frozen-lockfile
+
+  run_lint:
+    runs-on: ubuntu-latest
+    needs:
+      - setup
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - name: Install Deps
+        run: pnpm install --frozen-lockfile
+      - name: Lint
+        run: pnpm lint:check
+
+  run_typecheck:
+    runs-on: ubuntu-latest
+    needs:
+      - setup
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - name: Install Deps
+        run: pnpm install --frozen-lockfile
+      - name: Typecheck
+        run: pnpm typecheck
+
+  run_test:
+    runs-on: ubuntu-latest
+    needs:
+      - setup
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - name: Install Deps
+        run: pnpm install --frozen-lockfile
+      - name: Test
+        run: pnpm test
+
+  # release:
+  #   runs-on: ubuntu-latest
+  #   if: github.ref == 'refs/heads/main'
+  #   needs:
+  #     - run_lint
+  #     - run_typecheck
+  #     - run_test
+
+  #   steps:
+  #     - name: Checkout Repo
+  #       uses: actions/checkout@v4
+
+  #     - uses: ./.github/actions/setup
+
+  #     - name: Install Deps
+  #       run: pnpm install --frozen-lockfile
+
+  #     - name: Create Release Pull Request or Publish to npm
+  #       id: changesets
+  #       uses: changesets/action@v1
+  #       with:
+  #         publish: pnpm release
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,0 +1,18 @@
+name: setup
+description: setup
+
+runs:
+  using: composite
+  steps:
+    - uses: pnpm/action-setup@v2
+    - uses: ./.github/actions/setup-node
+    - uses: actions/cache@v4
+      with:
+        key: v3-pnpm-packages-${{ hashFiles('.tool-versions') }}-${{ hashFiles('pnpm-lock.yaml') }}
+        restore-keys: |
+          v3-pnpm-packages-${{ hashFiles('.tool-versions') }}-${{ hashFiles('pnpm-lock.yaml') }}
+          v3-pnpm-packages-
+        path: ~/.pnpm-store
+    - name: set pnpm store
+      shell: bash
+      run: pnpm config set store-dir ~/.pnpm-store

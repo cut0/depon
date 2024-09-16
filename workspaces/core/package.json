@@ -1,0 +1,11 @@
+{
+  "name": "@depon/core",
+  "private": true,
+  "scripts": {
+    "build": "tsc -p ./tsconfig.build.json && tsx build.ts"
+  },
+  "dependencies": {
+    "minimatch": "10.0.1",
+    "ts-morph": "23.0.0"
+  }
+}

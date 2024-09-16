@@ -1,0 +1,11 @@
+{
+  "name": "@depon/cli",
+  "private": true,
+  "scripts": {
+    "cli:dev": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "commander": "12.1.0",
+    "@depon/core": "workspace:*"
+  }
+}

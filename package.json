@@ -1,0 +1,40 @@
+{
+  "name": "depon",
+  "version": "0.0.1",
+  "description": "This library explores and visualizes project dependencies, offering both CLI-based text output and an interactive visualizer for intuitive understanding of file relationships.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./*": "./*"
+  },
+
+  "scripts": {
+    "lint:check": "biome ci",
+    "lint:fix": "biome check --fix",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "build": "pnpm -C workspaces/core run build",
+    "release": "pnpm build && changeset publish"
+  },
+  "keywords": ["Depen"],
+  "author": "Cut0",
+  "license": "MIT",
+  "files": ["dist"],
+  "devDependencies": {
+    "@biomejs/biome": "1.9.0",
+    "@changesets/changelog-github": "0.5.0",
+    "@changesets/cli": "2.27.8",
+    "@commitlint/cli": "19.5.0",
+    "@types/node": "22.5.5",
+    "esbuild": "0.23.1",
+    "tsx": "4.19.1",
+    "typescript": "5.6.2",
+    "vitest": "2.1.1"
+  },
+  "packageManager": "pnpm@9.10.0"
+}
