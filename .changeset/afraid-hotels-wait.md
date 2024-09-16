@@ -1,5 +1,0 @@
----
-
----
-
-clean: example docs

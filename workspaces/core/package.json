@@ -1,6 +1,6 @@
 {
   "name": "@depon/core",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "build": "tsc -p ./tsconfig.build.json && tsx build.ts"
