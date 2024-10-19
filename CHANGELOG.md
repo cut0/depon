@@ -1,5 +1,11 @@
 # depon
 
+## 0.0.6
+
+### Patch Changes
+
+- c11f592: fix: loop analyze bug
+
 ## 0.0.5
 
 ### Patch Changes
