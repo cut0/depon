@@ -1,5 +1,5 @@
 import { getFileRelationList } from "../services/file-relation";
-import { getFilePathList, isMatchPattern } from "../utils/fs";
+import { getFilePathList, isContainDir, isMatchPattern } from "../utils/fs";
 
 import type { FileRelationNode } from "../types";
 
@@ -12,10 +12,9 @@ export type Payload = {
 export const genFileRelation = (payload: Payload): FileRelationNode[] => {
   const { targetDir, aliasResolver, ignorePatterns = [] } = payload;
 
-  const files = getFilePathList(targetDir).filter(
-    (filePath) =>
-      !isMatchPattern(filePath, ["**/node_modules/**/*", ...ignorePatterns]),
-  );
+  const files = getFilePathList(targetDir)
+    .filter((filePath) => !isContainDir(filePath, ["node_modules"]))
+    .filter((filePath) => !isMatchPattern(filePath, [...ignorePatterns]));
 
   const relationList: FileRelationNode[] = [];
 
