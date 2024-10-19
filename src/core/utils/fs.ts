@@ -24,6 +24,13 @@ export const getFilePathList = (rootDirPath: string) => {
   return filePathList;
 };
 
+export const isContainDir = (filePath: string, dirs: string[]) => {
+  return path
+    .dirname(filePath)
+    .split(path.sep)
+    .some((dir) => dirs.includes(dir));
+};
+
 export const isMatchPattern = (filePath: string, patterns: string[]) => {
   return patterns.some((pattern) => minimatch(filePath, pattern));
 };

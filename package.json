@@ -25,7 +25,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest",
     "build": "tsc -p ./tsconfig.build.json && tsx ./build.ts",
-    "release": "pnpm build && changeset publish"
+    "release": "pnpm build && changeset publish",
+    "cli:dev": "tsx ./src/cli/index.ts"
   },
   "keywords": [
     "Depon",
