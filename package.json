@@ -58,6 +58,6 @@
   "dependencies": {
     "commander": "12.1.0",
     "minimatch": "10.0.1",
-    "ts-morph": "23.0.0"
+    "ts-morph": "24.0.0"
   }
 }
