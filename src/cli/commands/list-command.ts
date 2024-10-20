@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import type { Command } from "commander";
+import ora from "ora";
 import { genFileRelation, getChildrenList, getParentsList } from "../../core";
 import { printList } from "../utils/printer";
 import { toRecord, toSeparatedArray } from "../utils/string";
@@ -40,16 +41,28 @@ export const createListCommand = (program: Command) => {
         process.exit(1);
       }
 
+      if (!fs.existsSync(options.targetDir)) {
+        console.error("Target Directory does not exist.");
+        process.exit(1);
+      }
+
       if (options.aliasResolver instanceof Error) {
         console.error(options.aliasResolver.message);
         process.exit(1);
       }
+
+      const spinner = ora({
+        text: "Analyzing...",
+        isEnabled: true,
+      }).start();
 
       const relationList = genFileRelation({
         targetDir: options.targetDir,
         ignorePatterns: options.ignorePatterns,
         aliasResolver: options.aliasResolver,
       });
+
+      spinner.succeed("Analysis Complete !!");
 
       if (options.children) {
         console.log("\n👶 Children List 👶");
