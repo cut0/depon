@@ -1,5 +1,11 @@
 # depon
 
+## 0.0.8
+
+### Patch Changes
+
+- ca019f7: update: add installation to README
+
 ## 0.0.7
 
 ### Patch Changes
