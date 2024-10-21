@@ -5,6 +5,22 @@ It provides both a CLI and functions.
 
 In the future, it will also offer the feature to visualize dependencies as a graph.
 
+## Installation
+
+"DePon!!" can be installed via npm.
+
+```shell
+# install
+npm install depon
+```
+
+or CLI tools are also provided.
+
+```shell
+# cli
+npx depon --help
+```
+
 ## CLI
 
 The CLI provides the following commands:
@@ -99,7 +115,7 @@ import {
   getParentsList,
   getChildrenTree,
   getParentsTree,
-} from "depon/core";
+} from "depon";
 
 const targetDir = "./examples/src";
 
