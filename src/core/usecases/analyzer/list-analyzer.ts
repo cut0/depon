@@ -1,7 +1,7 @@
 import type { RelationNode } from "../../types";
 import { isExternalPath } from "../../utils/fs";
 
-type List = {
+export type List = {
   key: string;
 }[];
 
