@@ -1,7 +1,7 @@
 import type { RelationNode } from "../../types";
 import { isExternalPath } from "../../utils/fs";
 
-type ChildrenTree<T extends RelationNode> = {
+export type ChildrenTree<T extends RelationNode> = {
   key: string;
   children: ChildrenTree<T>[];
 };
@@ -39,7 +39,7 @@ export const getChildrenTree = <T extends RelationNode>(
   return buildTree(targetKey);
 };
 
-type ParentsTree<T extends RelationNode> = {
+export type ParentsTree<T extends RelationNode> = {
   key: string;
   parents: ParentsTree<T>[];
 };
