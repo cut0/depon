@@ -1,5 +1,12 @@
 # depon
 
+## 0.0.9
+
+### Patch Changes
+
+- 83a7c60: feat: export useful types
+- 974cf18: chore(deps): update dependency tsx to v4.19.2
+
 ## 0.0.8
 
 ### Patch Changes
