@@ -1,5 +1,12 @@
 # depon
 
+## 0.0.11
+
+### Patch Changes
+
+- 76f4c08: chore(deps): update dependency @types/node to v22.8.6
+- 85ab6e0: chore(deps): update dependency @types/node to v22.8.5
+
 ## 0.0.10
 
 ### Patch Changes
