@@ -1,5 +1,18 @@
 # depon
 
+## 0.1.0
+
+### Minor Changes
+
+- 941abce: feat: add depth option
+
+### Patch Changes
+
+- 76f4c08: chore(deps): update dependency @types/node to v22.8.6
+- c1ec9c0: fix(deps): update dependency ora to v8.1.1
+- 85ab6e0: chore(deps): update dependency @types/node to v22.8.5
+- ce53b14: docs: update README and examples
+
 ## 0.0.10
 
 ### Patch Changes
