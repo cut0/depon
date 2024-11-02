@@ -9,6 +9,7 @@ export type ChildrenTree<T extends RelationNode> = {
 export const getChildrenTree = <T extends RelationNode>(
   relationList: T[],
   targetKey: string,
+  limitedDepth?: number,
 ): ChildrenTree<T> => {
   const relationListWithoutLib = relationList.filter(
     (relation) =>
@@ -17,8 +18,13 @@ export const getChildrenTree = <T extends RelationNode>(
 
   const visitedKeyMap: Record<string, boolean> = {};
 
-  const buildTree = (key: string): ChildrenTree<T> => {
+  const buildTree = (key: string, depth: number): ChildrenTree<T> => {
     visitedKeyMap[key] = true;
+
+    if (limitedDepth != null && depth >= limitedDepth) {
+      visitedKeyMap[key] = false;
+      return { key, children: [] };
+    }
 
     const targetRelationList = relationListWithoutLib
       .filter((relation) => relation.parent === key)
@@ -30,13 +36,13 @@ export const getChildrenTree = <T extends RelationNode>(
     }
 
     const children = targetRelationList.map((relation) =>
-      buildTree(relation.child),
+      buildTree(relation.child, depth + 1),
     );
 
     return { key, children };
   };
 
-  return buildTree(targetKey);
+  return buildTree(targetKey, 0);
 };
 
 export type ParentsTree<T extends RelationNode> = {
@@ -47,6 +53,7 @@ export type ParentsTree<T extends RelationNode> = {
 export const getParentsTree = <T extends RelationNode>(
   relationList: T[],
   targetKey: string,
+  limitedDepth?: number,
 ): ParentsTree<T> => {
   const relationListWithoutLib = relationList.filter(
     (relation) =>
@@ -55,8 +62,13 @@ export const getParentsTree = <T extends RelationNode>(
 
   const visitedKeyMap: Record<string, boolean> = {};
 
-  const buildTree = (key: string): ParentsTree<T> => {
+  const buildTree = (key: string, depth: number): ParentsTree<T> => {
     visitedKeyMap[key] = true;
+
+    if (limitedDepth != null && depth >= limitedDepth) {
+      visitedKeyMap[key] = false;
+      return { key, parents: [] };
+    }
 
     const targetRelationList = relationListWithoutLib
       .filter((relation) => relation.child === key)
@@ -68,11 +80,11 @@ export const getParentsTree = <T extends RelationNode>(
     }
 
     const parents = targetRelationList.map((relation) =>
-      buildTree(relation.parent),
+      buildTree(relation.parent, depth + 1),
     );
 
     return { key, parents };
   };
 
-  return buildTree(targetKey);
+  return buildTree(targetKey, 0);
 };

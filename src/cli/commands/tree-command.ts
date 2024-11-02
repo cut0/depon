@@ -3,6 +3,7 @@ import path from "node:path";
 import type { Command } from "commander";
 import ora from "ora";
 import { genFileRelation, getChildrenTree, getParentsTree } from "../../core";
+import { isIntegerStr, parseSafeInt } from "../utils/number";
 import { printChildrenTree, printParentsTree } from "../utils/printer";
 import { toRecord, toSeparatedArray } from "../utils/string";
 
@@ -11,6 +12,7 @@ type Options = {
   parents: boolean;
   absolute: boolean;
   targetDir: string;
+  depth?: string;
   ignorePatterns?: string[];
   aliasResolver?: Record<string, string> | Error;
 };
@@ -22,6 +24,7 @@ export const createTreeCommand = (program: Command) => {
     .option("--no-children", "Include children", true)
     .option("--no-parents", "Include parents", true)
     .option("--absolute", "Show absolute path", false)
+    .option("--depth <depth>", "Specify the depth to search", undefined)
     .requiredOption("--target-dir <target-dir>", "Target directory")
     .option(
       "--ignore-patterns <pattern>",
@@ -34,6 +37,8 @@ export const createTreeCommand = (program: Command) => {
       toRecord,
     )
     .action((target: string, options: Options) => {
+      console.log("🌲 Dependency Tree 🌲\n");
+
       const file = path.resolve(target);
 
       if (!fs.existsSync(file)) {
@@ -48,6 +53,11 @@ export const createTreeCommand = (program: Command) => {
 
       if (options.aliasResolver instanceof Error) {
         console.error(options.aliasResolver.message);
+        process.exit(1);
+      }
+
+      if (options.depth != null && !isIntegerStr(options.depth)) {
+        console.error("Depth must be a number.");
         process.exit(1);
       }
 
@@ -66,13 +76,21 @@ export const createTreeCommand = (program: Command) => {
 
       if (options.children) {
         console.log("\n👶 Children Tree 👶");
-        const tree = getChildrenTree(relationList, file);
+        const tree = getChildrenTree(
+          relationList,
+          file,
+          parseSafeInt(options.depth),
+        );
         printChildrenTree(tree, options.absolute);
       }
 
       if (options.parents) {
         console.log("\n🎅 Parents Tree 🎅");
-        const tree = getParentsTree(relationList, file);
+        const tree = getParentsTree(
+          relationList,
+          file,
+          parseSafeInt(options.depth),
+        );
         printParentsTree(tree, options.absolute);
       }
     });
