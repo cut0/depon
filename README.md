@@ -38,20 +38,29 @@ Displays the dependencies of the target file in a tree format.
 
 ```shell
 # input
-npx depon tree --target-dir ./examples/src ./examples/src/main.tsx
+npx depon tree --target-dir ./examples ./examples/src/index.ts
 ```
 
 ```shell
 # output
+🌲 Dependency Tree 🌲
+
+✔ Analysis Complete !!
+
 👶 Children Tree 👶
-└── examples/src/main.tsx
-    ├── examples/src/App.tsx
-    │   ├── examples/src/assets/react.svg
-    │   └── examples/src/App.css
-    └── examples/src/index.css
+└── examples/src/index.ts
+    ├── examples/src/elements/A (depth:1)/index.tsx
+    │   ├── examples/src/elements/A (depth:1)/C (depth:2)/index.ts
+    │   │   ├── examples/src/elements/A (depth:1)/C (depth:2)/F (depth:3)/index.tsx
+    │   │   │   └── examples/src/elements/A (depth:1)/C (depth:2)/F (depth:3)/H (depth: 4)/index.tsx
+    │   │   │       └── examples/src/elements/A (depth:1)/C (depth:2)/F (depth:3)/H (depth: 4)/I (depth: 5)/index.tsx
+    │   │   └── examples/src/elements/A (depth:1)/C (depth:2)/G (depth:3)/index.tsx
+    │   └── examples/src/elements/A (depth:1)/D (depth:2)/index.tsx
+    └── examples/src/elements/B (depth:1)/index.tsx
+        └── examples/src/elements/B (depth:1)/E (depth:2)/index.tsx
 
 🎅 Parents Tree 🎅
-└── examples/src/main.tsx
+└── examples/src/index.ts
 ```
 
 | Option                      | Type    | Description                                                                                 | Default Value |
@@ -60,6 +69,7 @@ npx depon tree --target-dir ./examples/src ./examples/src/main.tsx
 | --no-children               | boolean | Do not display child dependencies                                                           | false         |
 | --no-parents                | boolean | Do not display parent dependencies                                                          | false         |
 | --absolute                  | string  | Display as absolute paths                                                                   | false         |
+| --depth <number>            | string  | Specify the depth to search (root is 0)                                                     | None          |
 | --ignore-patterns <pattern> | string  | Specify patterns of files/directories to exclude from analysis                              | None          |
 | --alias-resolver <json>     | record  | If `{ "@" : ".", "~" : ".." }`, then it would be `~/@/path` will be replaced as `.././path` | None          |
 
@@ -69,18 +79,28 @@ Displays the dependencies of the target file in a list format.
 
 ```shell
 # input
-npx depon list --target-dir ./examples/src ./examples/src/main.tsx
+npx depon list --target-dir ./examples ./examples/src/index.ts
 ```
 
 ```shell
 # output
+📋 Dependency List 📋
+
+✔ Analysis Complete !!
+
 👶 Children List 👶
-examples/src/App.tsx
-examples/src/assets/react.svg
-examples/src/App.css
-examples/src/index.css
+examples/src/elements/A (depth:1)/index.tsx
+examples/src/elements/A (depth:1)/C (depth:2)/index.ts
+examples/src/elements/A (depth:1)/C (depth:2)/F (depth:3)/index.tsx
+examples/src/elements/A (depth:1)/C (depth:2)/F (depth:3)/H (depth: 4)/index.tsx
+examples/src/elements/A (depth:1)/C (depth:2)/F (depth:3)/H (depth: 4)/I (depth: 5)/index.tsx
+examples/src/elements/A (depth:1)/C (depth:2)/G (depth:3)/index.tsx
+examples/src/elements/A (depth:1)/D (depth:2)/index.tsx
+examples/src/elements/B (depth:1)/index.tsx
+examples/src/elements/B (depth:1)/E (depth:2)/index.tsx
 
 🎅 Parents List 🎅
+
 ```
 
 | Option                      | Type    | Description                                                                                 | Default Value |
@@ -89,6 +109,7 @@ examples/src/index.css
 | --no-children               | boolean | Do not display child dependencies                                                           | false         |
 | --no-parents                | boolean | Do not display parent dependencies                                                          | false         |
 | --absolute                  | string  | Display as absolute paths                                                                   | false         |
+| --depth <number>            | string  | Specify the depth to search (root is 0)                                                     | None          |
 | --ignore-patterns <pattern> | string  | Specify patterns of files/directories to exclude from analysis                              | None          |
 | --alias-resolver <json>     | record  | If `{ "@" : ".", "~" : ".." }`, then it would be `~/@/path` will be replaced as `.././path` | None          |
 
@@ -174,6 +195,7 @@ Arguments for `getChildrenList`, `getParentsList`
 | -------------- | -------------------- | --------------------------------------------- |
 | `relationList` | `FileRelationNode[]` | Specify the return value of `genFileRelation` |
 | `targetKey`    | `string`             | Specify the target file                       |
+| `depth`        | `number?`            | Specify the depth to search (root is 0)       |
 
 Return value of `getChildrenList`, `getParentsList`
 
@@ -191,6 +213,7 @@ Arguments for `getChildrenTree`, `getParentsTree`
 | -------------- | -------------------- | --------------------------------------------- |
 | `relationList` | `FileRelationNode[]` | Specify the return value of `genFileRelation` |
 | `targetKey`    | `string`             | Specify the target file                       |
+| `depth`        | `number?`            | Specify the depth to search (root is 0)       |
 
 Return value of `getChildrenTree`, `getParentsTree`
 
