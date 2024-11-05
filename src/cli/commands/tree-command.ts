@@ -76,21 +76,17 @@ export const createTreeCommand = (program: Command) => {
 
       if (options.children) {
         console.log("\n👶 Children Tree 👶");
-        const tree = getChildrenTree(
-          relationList,
-          file,
-          parseSafeInt(options.depth),
-        );
+        const tree = getChildrenTree(relationList, file, {
+          limitedDepth: parseSafeInt(options.depth),
+        });
         printChildrenTree(tree, options.absolute);
       }
 
       if (options.parents) {
         console.log("\n🎅 Parents Tree 🎅");
-        const tree = getParentsTree(
-          relationList,
-          file,
-          parseSafeInt(options.depth),
-        );
+        const tree = getParentsTree(relationList, file, {
+          limitedDepth: parseSafeInt(options.depth),
+        });
         printParentsTree(tree, options.absolute);
       }
     });
