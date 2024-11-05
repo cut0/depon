@@ -1,5 +1,13 @@
 # depon
 
+## 0.1.1
+
+### Patch Changes
+
+- 8f7acfb: chore(deps): update dependency @types/node to v22.9.0
+- c12c3bd: fix: traverse tree bug
+- 287b330: chore(deps): update dependency @types/node to v22.8.7
+
 ## 0.1.0
 
 ### Minor Changes
