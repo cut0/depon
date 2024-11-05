@@ -1,5 +1,11 @@
 # depon
 
+## 0.1.2
+
+### Patch Changes
+
+- 03eee62: Revert "fix: traverse tree bug"
+
 ## 0.1.1
 
 ### Patch Changes
