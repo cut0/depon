@@ -161,7 +161,7 @@ Arguments for `genFileRelation`
 | ---------------- | ----------------------------------- | -------------------------------------------------------------------------------------------- |
 | `targetDir`      | `string`                            | Specify the target directory                                                                 |
 | `ignorePatterns` | `string[] (optional)`               | Specify patterns of files/directories to exclude                                             |
-| `aliasResocler`  | `Record<string, string> (optional)` | If `{ "@" : ".", "~" : ".." }`, then it would be `~/@/path` will be replaced as `.././path`. |
+| `aliasResolver`  | `Record<string, string> (optional)` | If `{ "@" : ".", "~" : ".." }`, then it would be `~/@/path` will be replaced as `.././path`. |
 
 Return value of `genFileRelation`
 
@@ -209,11 +209,12 @@ Return value of `getChildrenList`, `getParentsList`
 
 Arguments for `getChildrenTree`, `getParentsTree`
 
-| Argument       | Type                 | Description                                   |
-| -------------- | -------------------- | --------------------------------------------- |
-| `relationList` | `FileRelationNode[]` | Specify the return value of `genFileRelation` |
-| `targetKey`    | `string`             | Specify the target file                       |
-| `depth`        | `number?`            | Specify the depth to search (root is 0)       |
+| Argument        | Type                        | Description                                              |
+| --------------- | --------------------------- | -------------------------------------------------------- |
+| `relationList`  | `FileRelationNode[]`        | Specify the return value of `genFileRelation`            |
+| `targetKey`     | `string`                    | Specify the target file                                  |
+| `depth`         | `number?`                   | Specify the depth to search (root is 0)                  |
+| `stopCondition` | `(key, depth) => boolean ?` | Once the function is true, no further searching is done. |
 
 Return value of `getChildrenTree`, `getParentsTree`
 
