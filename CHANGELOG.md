@@ -1,5 +1,11 @@
 # depon
 
+## 0.2.0
+
+### Minor Changes
+
+- d8a14de: feat: add stop condition func
+
 ## 0.1.2
 
 ### Patch Changes
