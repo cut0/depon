@@ -9,7 +9,10 @@ export type ChildrenTree<T extends RelationNode> = {
 export const getChildrenTree = <T extends RelationNode>(
   relationList: T[],
   targetKey: string,
-  limitedDepth?: number,
+  options?: {
+    limitedDepth?: number;
+    stopCondition?: (key: string, depth: number) => boolean;
+  },
 ): ChildrenTree<T> => {
   const relationListWithoutLib = relationList.filter(
     (relation) =>
@@ -21,7 +24,12 @@ export const getChildrenTree = <T extends RelationNode>(
   const buildTree = (key: string, depth: number): ChildrenTree<T> => {
     visitedKeyMap[key] = true;
 
-    if (limitedDepth != null && depth >= limitedDepth) {
+    if (options?.limitedDepth != null && depth >= options?.limitedDepth) {
+      visitedKeyMap[key] = false;
+      return { key, children: [] };
+    }
+
+    if (options?.stopCondition?.(key, depth)) {
       visitedKeyMap[key] = false;
       return { key, children: [] };
     }
@@ -30,15 +38,11 @@ export const getChildrenTree = <T extends RelationNode>(
       .filter((relation) => relation.parent === key)
       .filter((relation) => !visitedKeyMap[relation.child]);
 
-    if (targetRelationList.length === 0) {
-      visitedKeyMap[key] = false;
-      return { key, children: [] };
-    }
-
     const children = targetRelationList.map((relation) =>
       buildTree(relation.child, depth + 1),
     );
 
+    visitedKeyMap[key] = false;
     return { key, children };
   };
 
@@ -53,7 +57,10 @@ export type ParentsTree<T extends RelationNode> = {
 export const getParentsTree = <T extends RelationNode>(
   relationList: T[],
   targetKey: string,
-  limitedDepth?: number,
+  options?: {
+    limitedDepth?: number;
+    stopCondition?: (key: string, depth: number) => boolean;
+  },
 ): ParentsTree<T> => {
   const relationListWithoutLib = relationList.filter(
     (relation) =>
@@ -65,7 +72,12 @@ export const getParentsTree = <T extends RelationNode>(
   const buildTree = (key: string, depth: number): ParentsTree<T> => {
     visitedKeyMap[key] = true;
 
-    if (limitedDepth != null && depth >= limitedDepth) {
+    if (options?.limitedDepth != null && depth >= options?.limitedDepth) {
+      visitedKeyMap[key] = false;
+      return { key, parents: [] };
+    }
+
+    if (options?.stopCondition?.(key, depth)) {
       visitedKeyMap[key] = false;
       return { key, parents: [] };
     }
@@ -74,15 +86,11 @@ export const getParentsTree = <T extends RelationNode>(
       .filter((relation) => relation.child === key)
       .filter((relation) => !visitedKeyMap[relation.parent]);
 
-    if (targetRelationList.length === 0) {
-      visitedKeyMap[key] = false;
-      return { key, parents: [] };
-    }
-
     const parents = targetRelationList.map((relation) =>
       buildTree(relation.parent, depth + 1),
     );
 
+    visitedKeyMap[key] = false;
     return { key, parents };
   };
 
