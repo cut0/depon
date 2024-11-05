@@ -39,6 +39,7 @@ export const getChildrenTree = <T extends RelationNode>(
       buildTree(relation.child, depth + 1),
     );
 
+    visitedKeyMap[key] = false;
     return { key, children };
   };
 
@@ -83,6 +84,7 @@ export const getParentsTree = <T extends RelationNode>(
       buildTree(relation.parent, depth + 1),
     );
 
+    visitedKeyMap[key] = false;
     return { key, parents };
   };
 
