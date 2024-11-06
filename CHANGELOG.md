@@ -1,5 +1,15 @@
 # depon
 
+## 0.3.0
+
+### Minor Changes
+
+- 83716bb: feat: add ignore type relation option
+
+### Patch Changes
+
+- c8a2629: docs: update readme
+
 ## 0.2.0
 
 ### Minor Changes
