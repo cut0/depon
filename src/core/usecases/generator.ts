@@ -7,10 +7,16 @@ export type Payload = {
   targetDir: string;
   ignorePatterns?: string[];
   aliasResolver?: Record<string, string>;
+  ignoreTypeRelation?: boolean;
 };
 
 export const genFileRelation = (payload: Payload): FileRelationNode[] => {
-  const { targetDir, aliasResolver, ignorePatterns = [] } = payload;
+  const {
+    targetDir,
+    aliasResolver,
+    ignorePatterns = [],
+    ignoreTypeRelation,
+  } = payload;
 
   const files = getFilePathList(targetDir)
     .filter((filePath) => !isContainDir(filePath, ["node_modules"]))
@@ -22,6 +28,7 @@ export const genFileRelation = (payload: Payload): FileRelationNode[] => {
     const relationListPerFile = getFileRelationList({
       baseFilePath: filePath,
       aliasResolver: aliasResolver ?? {},
+      ignoreTypeRelation,
     });
 
     relationList.push(...relationListPerFile);

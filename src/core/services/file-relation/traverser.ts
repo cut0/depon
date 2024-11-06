@@ -9,11 +9,13 @@ const project = new Project();
 type Payload = {
   baseFilePath: string;
   aliasResolver: Record<string, string>;
+  ignoreTypeRelation?: boolean;
 };
 
 export const getFileRelationList = ({
   baseFilePath,
   aliasResolver,
+  ignoreTypeRelation = false,
 }: Payload): FileRelationNode[] => {
   const sourceFile = project.addSourceFileAtPath(baseFilePath);
   const relationList: FileRelationNode[] = [];
@@ -25,6 +27,33 @@ export const getFileRelationList = ({
      */
     const childrenPathList = sourceFile
       .getImportDeclarations()
+      /**
+       * NOTE: Filter out type-only imports.
+       * - import type { Type } from "path/to/module"
+       * - import { type Type } from "path/to/module"
+       * - import type * as module from "path/to/module"
+       */
+      .filter((declaration) => {
+        if (!ignoreTypeRelation) {
+          return true;
+        }
+        if (declaration.isTypeOnly()) {
+          return false;
+        }
+        if (declaration.getDefaultImport() != null) {
+          return true;
+        }
+        if (declaration.getNamespaceImport() != null) {
+          return true;
+        }
+        if (declaration.getNamedImports().length !== 0) {
+          if (declaration.getNamedImports().some((el) => !el.isTypeOnly())) {
+            return true;
+          }
+          return false;
+        }
+        return true;
+      })
       .map((importDeclaration) => {
         return importDeclaration.getModuleSpecifierValue();
       });
@@ -45,6 +74,30 @@ export const getFileRelationList = ({
      */
     const childrenPathList = sourceFile
       .getExportDeclarations()
+      /**
+       * NOTE: Filter out type-only exports.
+       * - export type { Type } from "path/to/module"
+       * - export { type Type } from "path/to/module"
+       * - export type * as module from "path/to/module"
+       */
+      .filter((declaration) => {
+        if (!ignoreTypeRelation) {
+          return true;
+        }
+        if (declaration.isTypeOnly()) {
+          return false;
+        }
+        if (declaration.getNamespaceExport() != null) {
+          return true;
+        }
+        if (declaration.getNamedExports().length !== 0) {
+          if (declaration.getNamedExports().some((el) => !el.isTypeOnly())) {
+            return true;
+          }
+          return false;
+        }
+        return true;
+      })
       .map((exportDeclaration) => exportDeclaration.getModuleSpecifierValue())
       .filter((childPath) => childPath != null);
 
