@@ -1,5 +1,12 @@
 # depon
 
+## 0.3.1
+
+### Patch Changes
+
+- dcd3eea: chore(deps): update dependency vitest to v2.1.5
+- ef922e9: chore(deps): update pnpm to v9.13.0
+
 ## 0.3.0
 
 ### Minor Changes
