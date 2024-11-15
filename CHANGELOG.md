@@ -1,5 +1,12 @@
 # depon
 
+## 0.3.2
+
+### Patch Changes
+
+- 17c203d: chore(deps): update pnpm to v9.13.2
+- d27a368: chore(deps): update pnpm to v9.13.1
+
 ## 0.3.1
 
 ### Patch Changes
