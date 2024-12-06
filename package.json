@@ -54,7 +54,7 @@
     "typescript": "5.7.2",
     "vitest": "2.1.5"
   },
-  "packageManager": "pnpm@9.14.2",
+  "packageManager": "pnpm@9.15.0",
   "dependencies": {
     "commander": "12.1.0",
     "minimatch": "10.0.1",
