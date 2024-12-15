@@ -47,7 +47,7 @@
     "@biomejs/biome": "1.9.4",
     "@changesets/changelog-github": "0.5.0",
     "@changesets/cli": "2.27.10",
-    "@commitlint/cli": "19.6.0",
+    "@commitlint/cli": "19.6.1",
     "@types/node": "22.9.0",
     "esbuild": "0.24.0",
     "tsx": "4.19.2",
