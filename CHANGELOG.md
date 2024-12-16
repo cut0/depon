@@ -1,5 +1,18 @@
 # depon
 
+## 0.3.3
+
+### Patch Changes
+
+- 110354f: chore(deps): update dependency vitest to v2.1.8
+- c47e994: chore(deps): update dependency @commitlint/cli to v19.6.0
+- d24ec4c: chore(deps): update pnpm to v9.15.0
+- ebca871: chore(deps): update dependency @commitlint/cli to v19.6.1
+- c88dcce: chore(deps): update pnpm to v9.14.2
+- 0673e96: chore(deps): update dependency typescript to v5.7.2
+- eea284d: chore(deps): update dependency @changesets/cli to v2.27.10
+- 878c2db: chore(deps): update pnpm to v9.14.1
+
 ## 0.3.2
 
 ### Patch Changes
