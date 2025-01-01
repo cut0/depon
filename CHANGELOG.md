@@ -1,5 +1,14 @@
 # depon
 
+## 0.3.4
+
+### Patch Changes
+
+- a262170: fix(deps): update dependency ts-morph to v25
+- 118e62f: chore(deps): update dependency esbuild to v0.24.2
+- 626b566: chore(deps): update dependency @changesets/cli to v2.27.11
+- 5dec43e: chore(deps): update pnpm to v9.15.2
+
 ## 0.3.3
 
 ### Patch Changes
