@@ -1,5 +1,21 @@
 # depon
 
+## 0.3.4
+
+### Patch Changes
+
+- a262170: fix(deps): update dependency ts-morph to v25
+- 118e62f: chore(deps): update dependency esbuild to v0.24.2
+- 626b566: chore(deps): update dependency @changesets/cli to v2.27.11
+- 851dc81: chore(deps): update pnpm to v9.15.3
+- e1856e8: chore(deps): update dependency typescript to v5.7.3
+- 729337d: chore(deps): update dependency vitest to v3
+- 84644b6: chore(deps): update dependency vitest to v3.0.4
+- 827ff03: chore(deps): update dependency @changesets/cli to v2.27.12
+- f76a3c1: fix(deps): update dependency commander to v13
+- fe43cd4: chore(deps): update pnpm to v9.15.4
+- 5dec43e: chore(deps): update pnpm to v9.15.2
+
 ## 0.3.3
 
 ### Patch Changes
