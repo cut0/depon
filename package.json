@@ -57,7 +57,7 @@
   "packageManager": "pnpm@9.15.4",
   "dependencies": {
     "commander": "13.0.0",
-    "minimatch": "10.2.3",
+    "minimatch": "10.2.6",
     "ora": "^8.1.0",
     "ts-morph": "25.0.0"
   }
